@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.navbar {
+  background-color: #002b5b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  /* samakan dengan homepage */
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  /* tambahkan jarak kiri agar tidak terlalu nempel */
+}
+
+
+.navbar a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.navbar a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  margin: 30px;
+  gap: 25px;
+}
+
+/* Sidebar kiri */
+.sidebar {
+  width: 25%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.circle {
+  width: 120px;
+  height: 120px;
+  background: #002b5b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 28px;
+  margin: 0 auto 20px;
+  object-fit: cover;
+}
+
+.sidebar button {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #002b5b;
+  color: white;
+}
+
+.sidebar button:hover {
+  background-color: #01408a;
+}
+
+.kontrol button:last-child {
+  background-color: #007bff;
+}
+
+/* Konten kanan */
+.konten {
+  flex: 1;
+}
+
+.card {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+}
+
+h2 {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  color: #002b5b;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#previewProfil p {
+  margin: 8px 0;
+}
+
+#kembaliEdit {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #002b5b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#kembaliEdit:hover {
+  background-color: #01408a;
+}
+
+footer {
+  background-color: #002b5b;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
