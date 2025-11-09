@@ -2,116 +2,147 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PBL Polibatam - Profil</title>
-  <link rel="stylesheet" href="style_profil.css" />
+
+  <!-- Link Bootstrap -->
+  <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <header class="navbar">
-    <h1>WorkPiece</h1>
-    <nav>
-      <a href="home_page.php">Beranda</a>
-      <a href="#" class="active">Profil</a>
-      <a href="landing_page.php">Logout</a>
-    </nav>
-  </header>
+<body class="bg-light">
 
-  <main class="container">
-    <!-- KIRI -->
-    <section class="sidebar">
-      <div class="foto-profil">
-        <img id="previewFoto" class="circle" src="" alt="Foto Profil">
-        <input type="file" id="uploadFoto" accept="image/*" hidden />
-        <button id="btnUnggah">Unggah Foto</button>
-        <button id="btnHapus">Hapus Foto</button>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #002b5b;">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">WorkPiece</a>
+      <div class="d-flex">
+        <a href="home_page.php" class="nav-link text-white">Beranda</a>
+        <a href="#" class="nav-link text-white fw-bold text-decoration-underline">Profil</a>
+        <a href="landing_page.php" class="nav-link text-white">Logout</a>
       </div>
+    </div>
+  </nav>
 
-      <div class="kontrol">
-        <button id="editProfil">Edit Profil</button>
-        <button id="simpanPerubahan">Simpan</button>
-      </div>
-    </section>
+  <!-- Main Container -->
+  <main class="container my-5">
+    <div class="row g-4">
+      <!-- KIRI -->
+      <section class="col-md-4">
+        <div class="card text-center shadow-sm p-4">
+          <div class="mb-3">
+            <img id="previewFoto" src="" alt="Foto Profil" class="rounded-circle border mx-auto d-block" width="120"
+              height="120" style="object-fit: cover;">
+          </div>
 
-    <!-- KANAN -->
-    <section class="konten">
-      <!-- FORM PROFIL -->
-      <div class="card" id="formProfil">
-        <h2>Informasi Profil</h2>
-        <div class="form-row">
-          <label>Nama</label>
-          <input type="text" id="nama" placeholder="Nama Mahasiswa" />
+          <div class="d-grid gap-2">
+            <input type="file" id="uploadFoto" accept="image/*" hidden>
+            <button id="btnUnggah" class="btn btn-primary">Unggah Foto</button>
+            <button id="btnHapus" class="btn btn-danger">Hapus Foto</button>
+          </div>
+
+          <hr>
+
+          <div class="d-grid gap-2">
+            <button id="editProfil" class="btn btn-warning text-white">Edit Profil</button>
+            <button id="simpanPerubahan" class="btn btn-success">Simpan</button>
+          </div>
         </div>
-        <div class="form-row">
-          <label>Jurusan</label>
-          <input type="text" id="jurusan" placeholder="Teknik Informatika" />
-        </div>
-        <div class="form-row">
-          <label>NIM</label>
-          <input type="text" id="nim" placeholder="4342101234" />
-        </div>
-        <div class="form-row">
-          <label>Email</label>
-          <input type="email" id="email" placeholder="contoh@polibatam.ac.id" />
+      </section>
+
+      <!-- KANAN -->
+      <section class="col-md-8">
+        <!-- FORM PROFIL -->
+        <div class="card shadow-sm p-4" id="formProfil">
+          <h4 class="text-primary border-bottom pb-2 mb-3">Informasi Profil</h4>
+
+          <div class="mb-3">
+            <label class="form-label">Nama</label>
+            <input type="text" id="nama" class="form-control" placeholder="Nama Mahasiswa">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">NIM</label>
+            <input type="text" id="nim" class="form-control" placeholder="4342101234">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="contoh@polibatam.ac.id">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Jurusan</label>
+            <select id="jurusan" class="form-select">
+              <option value="">-- Pilih Jurusan --</option>
+              <option value="Teknik Informatika">Teknik Informatika</option>
+              <option value="Teknik Elektro">Teknik Elektro</option>
+              <option value="Teknik Mesin">Teknik Mesin</option>
+              <option value="Manajemen dan Bisnis">Manajemen dan Bisnis</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Program Studi</label>
+            <select id="prodi" class="form-select">
+              <option value="">-- Pilih Program Studi --</option>
+            </select>
+          </div>
+
+          <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Informasi Lainnya</h4>
+          <div class="mb-3">
+            <label class="form-label">Deskripsi Diri</label>
+            <textarea id="deskripsi" class="form-control" rows="3" placeholder="Ceritakan tentang diri Anda..."></textarea>
+          </div>
+
+          <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Riwayat Pendidikan</h4>
+          <div class="mb-3">
+            <label class="form-label">SMA</label>
+            <input type="text" id="sma" class="form-control" placeholder="Nama SMA">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tahun Lulus</label>
+            <input type="text" id="tahunLulus" class="form-control" placeholder="2020">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Universitas/Politeknik</label>
+            <input type="text" id="univ" class="form-control" value="Politeknik Negeri Batam" readonly>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Kemampuan</label>
+            <input type="text" id="kemampuan" class="form-control" placeholder="Hard Skills/Soft Skills">
+          </div>
         </div>
 
-        <h2>Informasi Lainnya</h2>
-        <div class="form-row">
-          <label>Deskripsi Diri</label>
-          <textarea id="deskripsi" placeholder="Ceritakan tentang diri Anda..."></textarea>
-        </div>
+        <!-- PREVIEW PROFIL -->
+        <div class="card shadow-sm p-4 d-none" id="previewProfil">
+          <h4 class="text-primary border-bottom pb-2 mb-3">Informasi Profil</h4>
+          <p><strong>Nama:</strong> <span id="prevNama">-</span></p>
+          <p><strong>NIM:</strong> <span id="prevNim">-</span></p>
+          <p><strong>Email:</strong> <span id="prevEmail">-</span></p>
+          <p><strong>Jurusan:</strong> <span id="prevJurusan">-</span></p>
+          <p><strong>Program Studi:</strong> <span id="prevProdi">-</span></p>
 
-        <h2>Riwayat Pendidikan</h2>
-        <div class="form-row">
-          <label>SMA</label>
-          <input type="text" id="sma" placeholder="Nama SMA" />
-        </div>
-        <div class="form-row">
-          <label>Tahun Lulus</label>
-          <input type="text" id="tahunLulus" placeholder="2020" />
-        </div>
-        <div class="form-row">
-          <label>Universitas/Politeknik</label>
-          <input type="text" id="univ" placeholder="Politeknik Negeri Batam" />
-        </div>
-        <div class="form-row">
-          <label>Program Studi</label>
-          <input type="text" id="prodi" placeholder="Teknik Informatika" />
-        </div>
-        <div class="form-row">
-          <label>Kemampuan</label>
-          <input type="text" id="kemampuan" placeholder="Hard Skills/Soft Skills" />
-        </div>
-      </div>
+          <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Informasi Lainnya</h4>
+          <p><strong>Deskripsi Diri:</strong> <span id="prevDeskripsi">-</span></p>
 
-      <!-- PREVIEW PROFIL -->
-      <div class="card" id="previewProfil" style="display:none;">
-        <h2>Informasi Profil</h2>
-        <p><strong>Nama:</strong> <span id="prevNama"></span></p>
-        <p><strong>NIM:</strong> <span id="prevNim"></span></p>
-        <p><strong>Jurusan:</strong> <span id="prevJurusan"></span></p>
-        <p><strong>Email:</strong> <span id="prevEmail"></span></p>
+          <h4 class="text-primary border-bottom pb-2 mt-4 mb-3">Riwayat Pendidikan</h4>
+          <p><strong>SMA:</strong> <span id="prevSma">-</span></p>
+          <p><strong>Tahun Lulus:</strong> <span id="prevTahunLulus">-</span></p>
+          <p><strong>Universitas/Politeknik:</strong> <span id="prevUniv">Politeknik Negeri Batam</span></p>
+          <p><strong>Kemampuan:</strong> <span id="prevKemampuan">-</span></p>
 
-        <h2>Informasi Lainnya</h2>
-        <p><strong>Deskripsi Diri:</strong> <span id="prevDeskripsi"></span></p>
-
-        <h2>Riwayat Pendidikan</h2>
-        <p><strong>SMA:</strong> <span id="prevSma"></span></p>
-        <p><strong>Tahun Lulus:</strong> <span id="prevTahunLulus"></span></p>
-        <p><strong>Universitas/Politeknik:</strong> <span id="prevUniv"></span></p>
-        <p><strong>Program Studi:</strong> <span id="prevProdi"></span></p>
-        <p><strong>Kemampuan:</strong> <span id="prevKemampuan"></span></p>
-
-        <button id="kembaliEdit">Kembali ke Edit Profil</button>
-      </div>
-    </section>
+          <button id="kembaliEdit" class="btn btn-secondary mt-3">Kembali ke Edit Profil</button>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2025 PBL Polibatam | Tentang | Kontak | Kebijakan Privasi</p>
+  <!-- Footer -->
+  <footer class="text-center text-white py-3 mt-5" style="background-color: #002b5b;">
+    © 2025 PBL Polibatam | Tentang | Kontak | Kebijakan Privasi
   </footer>
 
-  <script src="style_profil.js"></script>
+  <!-- Script -->
+  <script src="script_profil.js"></script>
 </body>
+
 </html>
