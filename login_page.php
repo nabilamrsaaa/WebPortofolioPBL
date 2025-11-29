@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db_host = 'localhost';
     $db_user = 'root'; // username MySQL Anda
     $db_pass = '';     // password MySQL Anda
-    $db_name = 'nama_database_anda'; // nama database Anda
+    $db_name = 'webportofoliopbl'; // nama database Anda
 
     $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
