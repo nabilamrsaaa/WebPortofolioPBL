@@ -1,9 +1,6 @@
 // Tunggu hingga seluruh konten HTML dimuat
 document.addEventListener('DOMContentLoaded', () => {
 
-// ========================================
-// INISIALISASI ELEMEN DOM
-// ========================================
 const elements = {
   // Tombol
   simpanBtn: document.getElementById("simpanPerubahan"),
@@ -72,9 +69,7 @@ const dataProdi = {
   ]
 };
 
-// ========================================
-// FUNGSI-FUNGSI UTILITAS
-// ========================================
+
 function toggleSections(showForm) {
   if (showForm) {
     elements.formSection.classList.remove("d-none");
@@ -125,9 +120,6 @@ function removePhoto() {
   elements.uploadInput.value = "";
 }
 
-// ========================================
-// EVENT LISTENERS
-// ========================================
 elements.jurusan.addEventListener("change", () => populateProdiDropdown(elements.jurusan.value));
 elements.simpanBtn.addEventListener("click", () => { updatePreviewData(); toggleSections(false); });
 elements.editBtn.addEventListener("click", () => toggleSections(true));

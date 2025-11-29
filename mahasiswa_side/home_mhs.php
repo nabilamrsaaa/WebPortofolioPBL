@@ -25,14 +25,6 @@
                     <a href="landing_page.php">Logout</a>
                 </div>
             </li>
-            <!-- Search Bar (setelah profil) -->
-            <li class="search-container">
-                <form action="#" class="search-form">
-                    <input type="text" placeholder="Cari proyek atau nama..." class="search-input">
-                    <button type="submit" class="search-btn">🔍</button>
-                </form>
-            </li>
-            </ul>
     </nav>
     <!-- Hero Section -->
     <section id="beranda" class="hero">
