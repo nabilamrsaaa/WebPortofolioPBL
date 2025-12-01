@@ -105,6 +105,7 @@
             max-width: 800px;
             margin: 0 auto 60px auto;
             font-size: 1.1rem;
+            text-align: justify;
         }
 
         .feature-box {
