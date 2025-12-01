@@ -12,20 +12,41 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    body,
-    .navbar a,
-    .navbar-brand {
-      font-family: "Poppins", sans-serif;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      background-color: whitesmoke;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      background-color: #002b5b !important;
+      padding: 0.75rem 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand.ms-1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff !important;
     }
 
     .navbar .nav-link {
-      margin: 0 12px; /* jarak antar menu */
+      margin: 0 12px;
       font-size: 16px;
+      font-weight: normal;
     }
-    
-    /* Tambahkan style untuk gambar profil default */
+
     #previewFoto {
       background-color: #e9ecef;
+    }
+
+    main {
+      padding-top: 80px;
     }
   </style>
 </head>
@@ -33,13 +54,18 @@
 <body class="bg-light">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #002b5b;">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">WorkPiece</a>
+      <a class="navbar-brand ms-1" href="#">WorkPiece</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="d-flex ms-auto">
-        <a href="home_page.php" class="nav-link text-white">Beranda</a>
-        <a href="#" class="nav-link text-white fw-bold text-decoration-underline">Profil</a>
-        <a href="landing_page.php" class="nav-link text-white">Logout</a>
+        <a href="home_mhs.php" class="nav-link text-white">Beranda</a>
+
+        <a href="#" class="nav-link text-white text-decoration-underline">Profil</a>
+        <a href="../landing_page.php">Logout</a>
       </div>
     </div>
   </nav>
@@ -51,8 +77,9 @@
       <section class="col-md-4">
         <div class="card text-center shadow-sm p-4">
           <div class="mb-3">
-            <img id="previewFoto" src="https://i.pinimg.com/736x/1b/62/b5/1b62b54b4bc754fa4a2980f77bd15a6b.jpg" alt="Foto Profil" class="rounded-circle border mx-auto d-block" width="120"
-              height="120" style="object-fit: cover;">
+            <img id="previewFoto" src="https://i.pinimg.com/736x/1b/62/b5/1b62b54b4bc754fa4a2980f77bd15a6b.jpg"
+              alt="Foto Profil" class="rounded-circle border mx-auto d-block" width="120" height="120"
+              style="object-fit: cover;">
           </div>
 
           <div class="d-grid gap-2">
@@ -121,7 +148,8 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Tahun Lulus</label>
-            <input type="text" id="tahunLulus" class="form-control" placeholder="2020">
+
+            <input type="date" id="tahunLulus" class="form-control">
           </div>
           <div class="mb-3">
             <label class="form-label">Universitas/Politeknik</label>
@@ -162,8 +190,8 @@
     © 2025 PBL Polibatam | Tentang | Kontak | Kebijakan Privasi
   </footer>
 
-  <!-- Script -->
   <script src="script_profil.js"></script>
 
 </body>
+
 </html>

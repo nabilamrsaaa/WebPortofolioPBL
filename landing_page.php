@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkPiece - Portofolio PBL Polibatam</title>
 
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CDN -->
@@ -17,12 +20,14 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #fff;
+            color: whitesmoke;
             background-color: whitesmoke;
         }
 
+        /* --- Navbar --- */
         .navbar {
             background: rgba(0, 0, 60, 0.8) !important;
+            padding: 0.75rem 0;
             z-index: 1000;
         }
 
@@ -43,7 +48,9 @@
             color: #00ffff !important;
         }
 
-        .hero {
+        /* --- Hero Section --- */
+        #beranda {
+            padding-top: 80px;
             height: 100vh;
             background: url('bg-gedung.jpg') no-repeat center center/cover;
             position: relative;
@@ -116,7 +123,6 @@
 
         .feature-box i {
             color: #00bcd4;
-            /* Warna ikon */
         }
 
         .feature-box h4 {
@@ -133,6 +139,10 @@
 
         /* --- Responsif --- */
         @media (max-width: 768px) {
+            #beranda {
+                padding-top: 70px;
+            }
+
             .hero-content h1 {
                 font-size: 2.5rem;
             }
@@ -148,8 +158,8 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">WorkPiece</a>
+        <div class="container">
+            <a class="navbar-brand ms-3" href="#">WorkPiece</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -183,11 +193,21 @@
     <section id="tentang" class="about">
         <div class="container">
             <h2>Tentang WorkPiece</h2>
-            <p>Platform ini bertujuan untuk menjadi wadah utama bagi mahasiswa Polibatam dalam menampilkan karya dan
-                proyek mereka, serta memberikan akses mudah bagi pengunjung untuk menjelajahi berbagai inovasi menarik.
+            <p>Selamat datang di jendela kami! Website ini adalah bukti nyata perjalanan kami, para mahasiswa Politeknik
+                Negeri Batam, dalam menerapkan ilmu yang kami pelajari. Di sini, kami tidak hanya belajar di kelas,
+                tetapi juga langsung terjun, berkolaborasi, dan menciptakan solusi untuk tantangan nyata melalui
+                Project-Based Learning (PBL).
+
+                Setiap proyek yang Anda lihat adalah hasil dari kerja keras, ide-ide segar, dan semangat inovasi tim
+                kami. Ini adalah tempat kami menunjukkan bagaimana konsep-konsep teknis diubah menjadi aplikasi yang
+                bermanfaat.
+
+                Kami bangga dapat berbagi karya-karya ini dan berharap Anda dapat melihat potensi serta dedikasi yang
+                kami miliki. Jelajahi, temukan, dan saksikan bagaimana kami di Politeknik Negeri Batam mempersiapkan
+                diri untuk masa depan.
             </p>
 
-            <div class="row g-4"> <!-- Bootstrap Grid, g-4 untuk gutter/spasi -->
+            <div class="row g-4">
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="bi bi-lightbulb fs-1"></i>
@@ -216,8 +236,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Kode JavaScript khusus Anda bisa ditulis di sini
-            // Contoh: console.log("Halaman telah dimuat");
+
         });
     </script>
 </body>
