@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($user['role'] == 'dosen') {
                     header("Location: dosen_side/home_dosen.php");
                 } else {
-                    header("Location: mahasiswa_side/home_mahasiswa.php");
+                    header("Location: mahasiswa_side/home_mhs.php");
                 }
                 exit(); // Hentikan skrip setelah redirect
 
