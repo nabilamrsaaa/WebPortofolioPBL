@@ -3,7 +3,7 @@
  $host = 'localhost';
  $username = 'root';     // Username MySQL kamu
  $password = '';         // Password MySQL kamu
- $dbname = 'db_portfolio'; // Nama database kamu (yang di foto)
+ $dbname = 'db_portofolio'; // Nama database kamu (yang di foto)
 
 // Opsi PDO biar lebih aman
  $options = [
