@@ -1,45 +1,42 @@
 <?php
 
 // 1. Memulai Sesi
-// Sesi diperlukan untuk menyimpan informasi login pengguna
-// agar bisa diakses di halaman-halaman lain.
 session_start();
 
 // 2. Menghubungkan ke Database
-// Memanggil file koneksi.php yang berisi kode untuk terhubung ke MySQL.
 require_once 'koneksi.php';
 
 // 3. Inisialisasi Variabel Pesan Error
-// Variabel ini akan menampung pesan error jika login gagal.
-$error_message = '';
+ $error_message = '';
 
 // 4. Cek Apakah Form Telah Dikirim (Metode POST)
-// Kode di dalam akan berjalan hanya jika pengguna menekan tombol "Masuk".
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 5. Ambil Data dari Form
-    // Mengambil data yang dikirim melalui form dan membersihkannya dari karakter berbahaya.
     $user_type = $_POST['user_type'];
     $identifier = $_POST['identifier']; // Bisa NIM atau Username
     $password = $_POST['password'];
 
     // 6. Validasi Input
-    // Pastikan tidak ada input yang kosong.
-    if ($user && $password === $user['password']) {
+    if (empty($user_type) || empty($identifier) || empty($password)) {
         $error_message = "Semua field harus diisi.";
     } else {
         // 7. Query Database Berdasarkan Tipe User
         try {
+            $user = null; // Inisialisasi variabel user
+
             // --- KASUS 1: JIKA YANG LOGIN ADALAH MAHASISWA ---
             if ($user_type == 'mahasiswa') {
                 // Query untuk mengambil data mahasiswa berdasarkan NIM
-                // Kita JOIN dengan tabel mahasiswa untuk mendapatkan NIM yang benar
                 $sql = "SELECT u.id as user_id, u.password, u.role, m.nim
-            FROM users u
-            JOIN mahasiswa m ON u.id_mahasiswa = m.id
-            WHERE m.nim = ? AND u.role = 'mahasiswa'";
-            
-                // --- KASUS 2: JIKA YANG LOGIN ADALAH DOSEN ---
+                        FROM users u
+                        JOIN mahasiswa m ON u.id_mahasiswa = m.id
+                        WHERE m.nim = ? AND u.role = 'mahasiswa'";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$identifier]);
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // --- KASUS 2: JIKA YANG LOGIN ADALAH DOSEN ---
             } elseif ($user_type == 'dosen') {
                 // Query untuk mengambil data dosen berdasarkan username
                 $sql = "SELECT u.id as user_id, u.password, u.role, u.id_dosen
@@ -47,12 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         WHERE u.username = ? AND u.role = 'dosen'";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$identifier]);
-                $user = $stmt->fetch();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
             }
 
             // 8. Verifikasi User dan Password
-            // Periksa apakah user ditemukan dan passwordnya cocok.
-            if ($user && password_verify($password, $user['password'])) {
+            // Periksa apakah user ditemukan dan passwordnya cocok
+            if ($user && $password === $user['password']) {
                 // Jika berhasil, simpan data ke sesi
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['role'] = $user['role'];
@@ -80,8 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $e) {
             // Jika terjadi error pada database
             $error_message = "Terjadi kesalahan. Silakan coba lagi.";
-            // Untuk debugging, Anda bisa menampilkan error aslinya:
-            // $error_message = "Query error: " . $e->getMessage();
         }
     }
 }
@@ -89,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
