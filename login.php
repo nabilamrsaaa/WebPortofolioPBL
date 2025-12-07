@@ -11,7 +11,7 @@ require_once 'koneksi.php';
 
 // 3. Inisialisasi Variabel Pesan Error
 // Variabel ini akan menampung pesan error jika login gagal.
- $error_message = '';
+$error_message = '';
 
 // 4. Cek Apakah Form Telah Dikirim (Metode POST)
 // Kode di dalam akan berjalan hanya jika pengguna menekan tombol "Masuk".
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 6. Validasi Input
     // Pastikan tidak ada input yang kosong.
-    if (empty($user_type) || empty($identifier) || empty($password)) {
+    if ($user && $password === $user['password']) {
         $error_message = "Semua field harus diisi.";
     } else {
         // 7. Query Database Berdasarkan Tipe User
@@ -33,14 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // --- KASUS 1: JIKA YANG LOGIN ADALAH MAHASISWA ---
             if ($user_type == 'mahasiswa') {
                 // Query untuk mengambil data mahasiswa berdasarkan NIM
-                // Kita menggunakan field id_mahasiswa sebagai referensi NIM
-                $sql = "SELECT u.id as user_id, u.password, u.role, u.id_mahasiswa as nim
-                        FROM users u
-                        WHERE u.id_mahasiswa = ? AND u.role = 'mahasiswa'";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$identifier]);
-                $user = $stmt->fetch();
-
+                // Kita JOIN dengan tabel mahasiswa untuk mendapatkan NIM yang benar
+                $sql = "SELECT u.id as user_id, u.password, u.role, m.nim
+            FROM users u
+            JOIN mahasiswa m ON u.id_mahasiswa = m.id
+            WHERE m.nim = ? AND u.role = 'mahasiswa'";
+            
                 // --- KASUS 2: JIKA YANG LOGIN ADALAH DOSEN ---
             } elseif ($user_type == 'dosen') {
                 // Query untuk mengambil data dosen berdasarkan username
