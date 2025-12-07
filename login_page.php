@@ -11,7 +11,7 @@ require_once 'koneksi.php';
 
 // 3. Inisialisasi Variabel Pesan Error
 // Variabel ini akan menampung pesan error jika login gagal.
-$error_message = '';
+ $error_message = '';
 
 // 4. Cek Apakah Form Telah Dikirim (Metode POST)
 // Kode di dalam akan berjalan hanya jika pengguna menekan tombol "Masuk".
@@ -32,23 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // --- KASUS 1: JIKA YANG LOGIN ADALAH MAHASISWA ---
             if ($user_type == 'mahasiswa') {
-                // Query untuk mengambil data mahasiswa dan user-nya berdasarkan NIM
-                // Kita JOIN tabel mahasiswa dan users untuk mendapatkan semua data yang dibutuhkan.
-                $sql = "SELECT u.id as user_id, u.password, u.role, m.nama_lengkap, m.nim
+                // Query untuk mengambil data mahasiswa berdasarkan NIM
+                // Kita menggunakan field id_mahasiswa sebagai referensi NIM
+                $sql = "SELECT u.id as user_id, u.password, u.role, u.id_mahasiswa as nim
                         FROM users u
-                        JOIN mahasiswa m ON u.id_mahasiswa = m.id
-                        WHERE m.nim = ?";
+                        WHERE u.id_mahasiswa = ? AND u.role = 'mahasiswa'";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$identifier]);
                 $user = $stmt->fetch();
 
                 // --- KASUS 2: JIKA YANG LOGIN ADALAH DOSEN ---
             } elseif ($user_type == 'dosen') {
-                // Query untuk mengambil data dosen dan user-nya berdasarkan username
-                $sql = "SELECT u.id as user_id, u.password, u.role, d.nama_lengkap, d.nidn
+                // Query untuk mengambil data dosen berdasarkan username
+                $sql = "SELECT u.id as user_id, u.password, u.role, u.id_dosen
                         FROM users u
-                        JOIN dosen d ON u.id_dosen = d.id
-                        WHERE u.username = ?";
+                        WHERE u.username = ? AND u.role = 'dosen'";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$identifier]);
                 $user = $stmt->fetch();
@@ -60,7 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Jika berhasil, simpan data ke sesi
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['role'] = $user['role'];
-                $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
+
+                // Simpan identifier yang spesifik untuk setiap role
+                if ($user['role'] == 'dosen') {
+                    $_SESSION['id_dosen'] = $user['id_dosen'];
+                } else {
+                    $_SESSION['nim'] = $user['nim'];
+                }
 
                 // Arahkan ke halaman dashboard yang sesuai
                 if ($user['role'] == 'dosen') {
@@ -350,8 +354,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     identifierLabel.textContent = 'NIM';
                     identifierInput.placeholder = 'Masukkan NIM Anda';
                 } else { // Dosen
-                    identifierLabel.textContent = 'Nidn';
-                    identifierInput.placeholder = 'Masukkan nidn Anda';
+                    identifierLabel.textContent = 'Username';
+                    identifierInput.placeholder = 'Masukkan username Anda';
                 }
             }
 
